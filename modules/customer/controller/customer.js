@@ -8,7 +8,7 @@ async function getCustomers(req, res) {
             user = await customer.findOne({ where: { id: query.id } });
             res.send(user);
         } else {
-            user = await customer.findAll({ order: [['updatedAt', 'DESC'], ['name', 'ASC']] });
+            user = await customer.findAll({ order: [['updatedAt', 'DESC']] });
             res.send({ data: user });
         }
     } catch (error) {
@@ -40,13 +40,4 @@ async function editCustomer(req, res) {
         res.send({ message: error });
     }
 }
-async function getCustomerDetails(req, res) {
-    try {
-        var userInfo = req.body;
-        var customers = await customer.findOne({ where: { id: userInfo.id } });
-        res.send({ data: customers });
-    } catch (error) {
-        res.send({ message: error });
-    }
-}
-module.exports = { getCustomers, addCustomer, editCustomer, getCustomerDetails };
+module.exports = { getCustomers, addCustomer, editCustomer };

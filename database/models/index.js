@@ -19,8 +19,9 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.customers = require("./customers.model")(sequelize, Sequelize);
 db.admin = require("./admin.model")(sequelize, Sequelize);
 db.adminSessions = require("./admin.sessions.model")(sequelize, Sequelize);
-
+db.customers = require("./customers.model")(sequelize, Sequelize);
+db.product = require("./product.model")(sequelize, Sequelize);
+db.order = require("./order.model")(sequelize, Sequelize);
 module.exports = db;

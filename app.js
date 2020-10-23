@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const adminRoutes = require('./modules/admin/routes/adminRoutes');
 const customerRoutes = require('./modules/customer/routes/customerRoutes');
+const productRoutes = require('./modules/product/routes/productRoutes');
+const orderRoutes = require('./modules/order/routes/orderRoutes');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var helmet = require('helmet');
@@ -10,7 +12,7 @@ try {
     // sequelize.authenticate();
     console.log('Connection has been established successfully.');
     db.sequelize.authenticate().then(() => {
-        // db.sequelize.sync();
+        db.sequelize.sync();
     });
 } catch (error) {
     console.error('Unable to connect to the database:', error);
@@ -23,6 +25,8 @@ app.use(compression());
 
 app.use('/', adminRoutes);
 app.use('/customer', customerRoutes);
+app.use('/product', productRoutes);
+app.use('/order', orderRoutes);
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');

@@ -6,6 +6,5 @@ const customerController = require('../controller/customer');
 router.get('/get', authorizer.authorize, customerController.getCustomers);
 router.post('/add', authorizer.authorize, customerController.addCustomer);
 router.post('/edit', authorizer.authorize, customerController.editCustomer);
-router.post('/details', authorizer.authorize, customerController.getCustomerDetails);
 
 module.exports = router;
