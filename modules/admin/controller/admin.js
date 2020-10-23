@@ -10,6 +10,9 @@ async function signIn(req, res) {
             res.status(400).json({ message: 'Bad request' });
         }
         const adminUser = await models.admin.findOne({ where: { username: reqBody.username } });
+        if (adminUser.status != 1) {
+            res.json({ message: 'Admin is disabled' });
+        }
         if (adminUser) {
             var passwordIsValid = bcrypt.compareSync(
                 reqBody.password,
